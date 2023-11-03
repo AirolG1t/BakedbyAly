@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+:root{
+    --brown:#F2BED1;
+    --black: #1B1722;
+    --white : #F0F0F0;
+    --box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+body{
+    background:#F8E8EE;
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: .2s linear;
+}
+
+.grid-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-radius: 20px;
+  height: 700px;
+  margin: 1rem;
+  border: 2px solid #f1f1f1;
+  padding: 20px;
+  box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
+    0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+.left,.left2 {
+    transition: all 1s ease; /* Add a transition for the opacity property */
+}
+.left2 {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-radius: 20px;
+  height: 700px;
+  max-width: 644px;
+  margin: 1rem;
+  border: 2px solid #f1f1f1;
+  overflow-x: hidden;
+  padding: 20px;
+  box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
+    0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+.left div .left2 div{
+  margin: 10px;
+}
+.left .card-header, .left2 .card-header{
+  font-size: 35px;
+  text-decoration: underline;
+}
+.left span, .left2 span{
+  font-size: 20px;
+  font-weight: 400;
+  font-weight: bold;
+}
+.left button, .left2 button {
+  width: 150px;
+  height: 60px;
+  border-radius: 30px;
+  border: 1px solid #f1f1f1;
+  background-color: aquamarine;
+  margin: 10px;
+}
+span {
+  text-align: center;
+  line-height: 1.5;
+}
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 200px;
+}
+.top .sticker{
+  display: flex;
+  overflow-x: auto;
+  width: 100%;
+  margin: 0 10px;
+  background-color: #fffcfc;
+}
+.centered-icon {
+  margin: 0 auto;
+  background-color: rgb(173, 173, 173);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #ffffff;
+}
+.centered-icon:hover {
+  background-color: #cfcfcf;
+  color: #111;
+}
+.flavors{
+  display: inline-flex;
+  height: 100px;
+  width: 400px;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  padding: 20px 15px;
+}
+.flavors .option{
+  background-color: aquamarine;
+  width: 150px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 0 10px;
+  border: 1px solid #f1f1f1;
+  transition: all 0.3s ease;
+}
+.flavors .option .dot{
+  height: 20px;
+  width: 25px;
+  background: #fffcfc;
+  border-radius: 50%;
+  position: relative;
+}
+.left .option .dot::before{
+  position: absolute;
+  content: "";
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 13px;
+  padding: 5px;
+  background: #0069d9;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(1.5);
+  transition: all 0.3s ease;
+}
+input[type="radio"]{
+  display: none;
+}
+#option-1:checked:checked ~ .option-1,
+#option-2:checked:checked ~ .option-2{
+  border-color: #0069d9;
+  background: #0069d9;
+}
+#option-1:checked:checked ~ .option-1 .dot,
+#option-2:checked:checked ~ .option-2 .dot{
+  background: #fff;
+}
+#option-1:checked:checked ~ .option-1 .dot::before,
+#option-2:checked:checked ~ .option-2 .dot::before{
+  opacity: 1;
+  transform: scale(1);
+}
+.flavors .option span{
+  font-size: 15px;
+  color: #ffffff;
+}
+#option-1:checked:checked ~ .option-1 span,
+#option-2:checked:checked ~ .option-2 span{
+  color: #fff;
+}
+.left button:hover {
+  background-color: aqua;
+}
+.cakeColor {
+  width: 100%;
+  overflow-x: auto;
+}
+.colorList, .topList, .middleList {
+  list-style: none;
+  width: 600px;
+  height: 100px;
+  display: flex;
+  color: #fff;
+  text-align: center;
+}
+.sticker .middleList, .sticker .topList {
+  list-style: none; /* Remove default list bullets */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sticker .middleList li, .sticker .topList li {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 5px; /* Add margin for spacing between items */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #000;
+}
+
+.sticker .middleList li img, .sticker .topList li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+}
+
+.topList .top2, .middleList .middle{
+  height: 100px;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+.colorList .draggable-list {
+  border-radius: 50%;
+  text-align: center;
+  height: 70px;
+  width: 70px;
+  margin: 8px;
+  padding: 8px;
+  border: 2px solid #000;
+}
+.top2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 50%;
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+}
+.colorList .draggable-list:hover{
+  background-color: #fff;
+  color: #111;
+}
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 20px;
+  height: 700px;
+  margin: 1rem;
+  width: 700px;
+  border: 2px solid #f1f1f1;
+  padding: 20px;
+  box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
+    0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+.draggable-list {
+  list-style: none;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+.right img {
+  width: 650px;
+  border-radius: 15px 15px 0 0;
+}
+.card-footer {
+  align-self: flex-end;
+}
+#redImage.dragover {
+  border: 2px dashed #000;
+}
+.top-sticker{
+  z-index: 1; 
+  display: none;     
+  width: 280px;
+  height: 100px;
+  position: absolute;
+}
+.top-sticker:hover {
+    background-color: transparent;
+    cursor: pointer;
+}
+.carousel-item.active .top-sticker {
+  z-index: 1; 
+  position: absolute;
+  top: 0;
+  left: 185px;
+  border: 2px dashed #ff0000;
+}
+.carousel-item.active .top-sticker:hover{
+  border: 2px dashed #ff0000;
+}
+.topSticker2{
+  z-index: 1; 
+  display: none;     
+  width: 190px;
+  height: 160px;
+  position: absolute;
+}
+.topSticker2:hover {
+  background-color: transparent;
+  cursor: pointer;
+}
+.carousel-item.active .topSticker2 {
+  z-index: 1; 
+  position: absolute;
+  top: 15px;
+  left: 220px;
+  border: 2px dashed #3700ff;
+}
+.carousel-item.active .top-sticker2:hover{
+  border: 2px dashed #3700ff;
+}
+.middleSticker{
+  display: none;
+  position: absolute;
+  width: 287px;
+  height: 180px;
+  left: 70px;
+  top: 155px;
+}
+.middleSticker:hover {
+    background-color: transparent;
+    cursor: pointer;
+}
+.carousel-item.active  .middleSticker {
+  z-index: 1; 
+  position: absolute;
+  left: 185px;
+  top: 90px;
+}
+.carousel-item.active  .middleSticker:hover{
+  border: 1px dashed #25ee0f;
+}
+.middleSticker2{
+  display: none;
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  left: 70px;
+  top: 155px;
+}
+.middleSticker2:hover {
+    background-color: transparent;
+    cursor: pointer;
+}
+.carousel-item.active  .middleSticker2 {
+  z-index: 1; 
+  position: absolute;
+  left: 200px;
+  top: 200px;
+}
+.carousel-item.active  .middleSticker2:hover{
+  border: 2px dashed #e60fee;
+}
+@media (max-width: 600px) {
+  html { font-size: 14px; }
+  .draggable-elements { margin: 1.5rem; }
+}

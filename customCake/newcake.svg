@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:se="http://svg-edit.googlecode.com">
+ <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
+ <g class="layer">
+  <title>Layer 1</title>
+  <polyline fill="none" id="conn_svg_3" points="312.2 196.3 312.2 196.55 312.2 196.8" se:connector="svg_2 svg_1" stroke="#000000" stroke-width="5"/>
+  <rect fill="#e0a064" height="250" id="svg_1" rx="8" ry="8" stroke="#000000" transform="matrix(1 0 0 1 0 0)" width="224" x="200.2" y="196.8"/>
+  <line fill="none" id="svg_9" stroke="#000000" stroke-width="4" x1="127.2" x2="512.2" y1="454.8" y2="453.8"/>
+  <rect fill="#e0a064" height="185" id="svg_2" rx="2" ry="2" stroke="#000000" width="182" x="221.2" y="11.3"/>
+ </g>
+</svg>

@@ -17,5 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
         slides[index].classList.add('active');
     }
 
-});  
+});
+
   

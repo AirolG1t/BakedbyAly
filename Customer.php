@@ -12,13 +12,16 @@
 ?>
 <body>
 <header class="header">
-    <a href="Customer.php" class="logo"> <i class="fas fa-shopping-basket"></i> Baked by Aly</a>
-
+    <div class="logoContent">
+        <a href="Customer.php" class="logo"><img src="assets/images/logo-web-removebg-preview.png" alt="">
+            <span class="logoName">Baked by Ally</span>
+        </a>
+    </div>
     <div class="icons">
         <div class="dropdown">
         <i id="menu-btn" class="fas fa-bars"></i>
         <i id="search-btn" class="fas fa-search"></i>
-        <a href="assets/cart.php"><i id="cart-btn" class="fas fa-shopping-cart"></i></a>
+        <a href="assets/cart.php" class="shopping"><i id="cart-btn" class="fas fa-shopping-cart" style="color: #fff;"></i></a>
         </i>
         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" style="margin-left: 35px;" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo $row1['fname']; echo $row1['lname'] ?>
@@ -75,8 +78,6 @@
     <div id="prev-slide" class="fas fa-angle-left" onclick="prev()"></div>
 
 </section>
-
-
 <section class="banner-container">
 
     <div class="banner">
@@ -191,7 +192,7 @@
     <h1 class="title"> <span>Cupcakes</span> <a href="#">view all >></a> </h1>
     <div id="message"></div>
     <div class="box-container cupCakeCon">
-        <?php
+        <?php 
             $sql = mysqli_query($conn, "SELECT * FROM products WHERE category = 'themecupcake' OR category = 'numberlettercupcake' OR category = 'muffins'");
             
             if(mysqli_num_rows($sql) > 0){
@@ -204,19 +205,15 @@
                             </button>
                             </div>
                             <input type="hidden" class="itemId" value="'.$row['pid'].'">
+                            <input type="hidden" class="pname" value="'.$row['name'].'">
+                            <input type="hidden" class="price" value="'.$row['price'].'">
+                            <input type="hidden" class="pimage" value="'.$row['image'].'">
                             <div class="img">
-                                <img decoding="async" class="pimage" src="assets/images/'.$row['image'].'" alt="">
+                                <img src="assets/images/'.$row['image'].'" alt="">
                             </div>
                             <div class="content">
                                 <h3>'.$row['name'].'</h3>
                                 <div class="price">₱'.$row['price'].'</div>
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
                             </div>
                         </div>
                     ';
@@ -278,7 +275,6 @@
 <div class="space"></div>
 
 
-
 <section class="footer">
     <div class="box-container">
         <div class="box">
@@ -305,8 +301,7 @@
     <script src="js/account.js"></script>
     <script src="main.js"></script> 
     <script>
-  $(document).ready(function() {
-
+  $(document).ready(function() {  
     // Send product details in the server
     $(".box-container").on("click", "button[type=submit]", function(e) {
         e.preventDefault();
@@ -325,21 +320,6 @@
             }
         });
     });
-
-    load_cart_item_number();
-
-    function load_cart_item_number() {
-      $.ajax({
-        url: 'assets/action.php',
-        method: 'get',
-        data: {
-          cartItem: "cart-btn"
-        },
-        success: function(response) {
-          $("#cart-btn").html(response);
-        }
-      });
-    }
   });
   </script>
 </body>

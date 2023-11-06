@@ -1,8 +1,8 @@
 <?php
 session_start();
 include('dbcon.php');
-if(isset($_POST['pid'])){
-  $pid = $_POST['pid'];
+if(isset($_POST['newId'])){
+  $pid = $_POST['newId'];
 	$pname = $_POST['pname'];
 	$pprice = $_POST['pprice'];
 	$pimage = $_POST['pimage'];

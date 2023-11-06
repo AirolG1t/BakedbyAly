@@ -1,34 +1,42 @@
 <?php include('../customerphp/header.php');?>
 <link rel="stylesheet" href="../customerPanel.css">
 <?php include_once('dbcon.php');?>
+<?php 
+    session_start();
+    if(!isset($_SESSION['unique_id'])){
+        header("location: main.php");
+    }
+    $id = $_SESSION['unique_id'];
+    $query = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = '{$id}'");
+    $row1 = mysqli_fetch_assoc($query);
+?>
 <body>
-  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <!-- Brand -->
-    <a class="navbar-brand" href="index.php"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Mobile Store</a>
-    <!-- Toggler/collapsibe Button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <!-- Navbar links -->
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="index.php"><i class="fas fa-mobile-alt mr-2"></i>Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-th-list mr-2"></i>Categories</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="checkout.php"><i class="fas fa-money-check-alt mr-2"></i>Checkout</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i> <span id="cart-item" class="badge badge-danger"></span></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<header class="header">
+        <div class="logoContent">
+            <a href="../Customer.php" class="logo"><img src="images/logo-web-removebg-preview.png" alt="">
+              <span class="logoName">Baked by Ally</span>
+            </a>
+        </div>
 
-  <div class="container">
+    <div class="icons">
+        <div class="dropdown">
+        <i id="menu-btn" class="fas fa-bars"></i>
+        <i id="search-btn" class="fas fa-search"></i>
+        <a href="assets/cart.php"><i id="cart-btn" class="fas fa-shopping-cart"></i></a>
+        </i>
+        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" style="margin-left: 35px;" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php echo $row1['fname']; echo $row1['lname'] ?>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">View Profile</a></li>
+            <li><a class="dropdown-item" href="#">Orders</a></li>
+            <li><a class="dropdown-item" href="assets/logout.php?logout_id=<?php echo $row1['unique_id'] ?>">Logout</a></li>
+        </ul>
+        </div>
+    </div>
+</header>
+
+  <section class="banner-container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <div style="display:<?php if (isset($_SESSION['showAlert'])) {
@@ -104,7 +112,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

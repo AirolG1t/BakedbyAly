@@ -14,7 +14,6 @@ const carousel = new bootstrap.Carousel(myCarouselElement, {
         console.log('Selected size:', size);
     }
 
-
     document.querySelectorAll('.draggable-list').forEach(list => {
         list.addEventListener('dragstart', (e) => {
             const draggedItemId = e.target.id;
@@ -44,20 +43,23 @@ const carousel = new bootstrap.Carousel(myCarouselElement, {
 
         // Add your filter change logic here    
         if (data === 'color1') {
-            document.getElementById(currentImage).style.filter = 'brightness(0) saturate(100%) invert(92%) sepia(97%) saturate(861%) hue-rotate(327deg) brightness(108%) contrast(98%)';
+            document.getElementById(currentImage).style.filter = 'brightness(0) saturate(100%) invert(23%) sepia(5%) saturate(232%) hue-rotate(227deg) brightness(92%) contrast(88%)';
         } else if (data === 'color2') {
             document.getElementById(currentImage).style.filter = 'brightness(0) saturate(100%) invert(77%) sepia(80%) saturate(3024%) hue-rotate(75deg) brightness(103%) contrast(104%)';
         } else if (data === 'color3') {
             document.getElementById(currentImage).style.filter = 'brightness(0) saturate(100%) invert(40%) sepia(12%) saturate(2921%) hue-rotate(255deg) brightness(99%) contrast(83%)';
         } else if (data === 'color4') {
-            document.getElementById(currentImage).style.filter = 'brightness(0) saturate(100%) invert(60%) sepia(55%) saturate(2353%) hue-rotate(294deg) brightness(104%) contrast(98%)';
+            document.getElementById(currentImage).style.filter = 'brightness(0) saturate(100%) invert(84%) sepia(38%) saturate(593%) hue-rotate(303deg) brightness(97%) contrast(103%)';
         }else if (data === 'color5'){
-            document.getElementById(currentImage).style.filter = 'brightness(0) saturate(100%) invert(85%) sepia(55%) saturate(4018%) hue-rotate(322deg) brightness(106%) contrast(98%)';
+            document.getElementById(currentImage).style.filter = 'brightness(0) saturate(100%) invert(43%) sepia(16%) saturate(843%) hue-rotate(354deg) brightness(85%) contrast(83%)';
         }else if (data === 'color6'){
             document.getElementById(currentImage).style.filter = 'brightness(0) saturate(100%) invert(57%) sepia(61%) saturate(1222%) hue-rotate(195deg) brightness(104%) contrast(114%)'
         }
         else if (data === 'color7'){
             document.getElementById(currentImage).style.filter = 'brightness(0) saturate(100%) invert(99%) sepia(0%) saturate(460%) hue-rotate(6deg) brightness(118%) contrast(87%)'
+        }
+        else if(data === 'color8'){
+            document.getElementById(currentImage).style.filter = "brightness(0) saturate(100%) invert(79%) sepia(12%) saturate(472%) hue-rotate(328deg) brightness(111%) contrast(84%)";
         }
         // Append the dropped list to the image container
         document.getElementById(currentImage).appendChild(droppedList);
@@ -117,7 +119,7 @@ const carousel = new bootstrap.Carousel(myCarouselElement, {
         e.preventDefault();
         topSticker.style.backgroundColor = 'transparent';
         const draggedElementId = e.dataTransfer.getData('text/plain');
-        if(draggedElementId === 'top1' || draggedElementId === 'top2' || draggedElementId === 'top3' || draggedElementId === 'top4'){
+        if(draggedElementId === 'top1' || draggedElementId === 'top2' || draggedElementId === 'top3' || draggedElementId === 'top4' || draggedElementId === 'top5'|| draggedElementId === 'top6'|| draggedElementId === 'top7'){
             const draggedElement = document.getElementById(draggedElementId); 
             while (topSticker.firstChild) {
                 topSticker.removeChild(topSticker.firstChild);
@@ -144,7 +146,7 @@ const carousel = new bootstrap.Carousel(myCarouselElement, {
             e.preventDefault();
             topSticker2.style.backgroundColor = 'transparent';
             const draggedElementId = e.dataTransfer.getData('text/plain');
-            if(draggedElementId === 'top1' || draggedElementId === 'top2' || draggedElementId === 'top3' || draggedElementId === 'top4'){
+            if(draggedElementId === 'top1' || draggedElementId === 'top2' || draggedElementId === 'top3' || draggedElementId === 'top4' || draggedElementId === 'top5'|| draggedElementId === 'top6'|| draggedElementId === 'top7'){
                 const draggedElement = document.getElementById(draggedElementId); 
                 while (topSticker2.firstChild) {
                     topSticker2.removeChild(topSticker2.firstChild);
@@ -171,20 +173,26 @@ const carousel = new bootstrap.Carousel(myCarouselElement, {
     //middleSticker
     const draggableMiddeElements = document.querySelectorAll('.draggableMid');
     const middleSticker = document.querySelector('.middleSticker');
+    const middleSticker1 = document.querySelector('.middleSticker1');
     const middleSticker2 = document.querySelector('.middleSticker2');
 
     const originalMiddleListContent = document.querySelector('.sticker .middleList').innerHTML;
+    const originalmiddleSticker1Content = document.querySelector('.middleSticker1').innerHTML; 
     const originalmiddleSticker2Content = document.querySelector('.middleSticker2').innerHTML; 
 
     draggableMiddeElements.forEach(element => {
         element.addEventListener('dragstart', (e) => {
             e.dataTransfer.setData('text/plain', e.target.id);
             middleSticker.style.display = 'flex';
+            middleSticker1.style.display = 'flex';
             middleSticker2.style.display = 'flex';
         });
     });
 
     middleSticker.addEventListener('dragover', (e) => {
+        e.preventDefault();
+    });
+    middleSticker1.addEventListener('dragover', (e) => {
         e.preventDefault();
     });
     middleSticker2.addEventListener('dragover', (e) => {
@@ -194,6 +202,9 @@ const carousel = new bootstrap.Carousel(myCarouselElement, {
     middleSticker.addEventListener('dragenter', () => {
         middleSticker.style.backgroundColor = '#e0e0e0';
     });
+    middleSticker1.addEventListener('dragenter', () => {
+        middleSticker1.style.backgroundColor = '#e0e0e0';
+    });
     middleSticker2.addEventListener('dragenter', () => {
         middleSticker2.style.backgroundColor = '#e0e0e0';
     });
@@ -201,10 +212,44 @@ const carousel = new bootstrap.Carousel(myCarouselElement, {
     middleSticker.addEventListener('dragleave', () => {
         middleSticker.style.backgroundColor = 'transparent';
     });
+    middleSticker1.addEventListener('dragleave', () => {
+        middleSticker1.style.backgroundColor = 'transparent';
+    });
     middleSticker2.addEventListener('dragleave', () => {
         middleSticker2.style.backgroundColor = 'transparent';
     });
 
+    middleSticker1.addEventListener('drop', (e) => {
+        e.preventDefault();
+        middleSticker1.style.backgroundColor = 'transparent';
+        const draggedElementId = e.dataTransfer.getData('text/plain');
+        if (draggedElementId === 'top1' || draggedElementId === 'top2' || draggedElementId === 'top3' || draggedElementId === 'top4' || draggedElementId === 'top5'|| draggedElementId === 'top6'|| draggedElementId === 'top7') {
+            const draggedElement = document.getElementById(draggedElementId);
+    
+            // Remove the current child element from middleSticker
+            while (middleSticker1.firstChild) {
+                middleSticker1.removeChild(middleSticker1.firstChild);
+            }
+    
+            // Add the new dragged element to middleSticker
+            middleSticker1.appendChild(draggedElement);
+            draggedElement.style.width = '100%';
+            draggedElement.style.height = '100%';
+            draggedElement.style.borderRadius = 'none';
+            console.log('Dropped element ID:', draggedElementId);
+        } else {
+            document.querySelector('.topList').innerHTML = originalMiddleListContent;
+            middleSticker1.innerHTML = '';
+
+            const resetDraggableMidElements = document.querySelectorAll('.draggableTop');
+            resetDraggableMidElements.forEach(element => {
+                element.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('text/plain', e.target.id);
+                    middleSticker1.style.display = 'block';
+                });
+            });
+        }
+    });
     middleSticker.addEventListener('drop', (e) => {
         e.preventDefault();
         middleSticker.style.backgroundColor = 'transparent';
@@ -236,6 +281,7 @@ const carousel = new bootstrap.Carousel(myCarouselElement, {
             });
         }
     });
+
     middleSticker2.addEventListener('drop', (e) => {
         e.preventDefault();
         middleSticker2.style.backgroundColor = 'transparent';
@@ -290,6 +336,7 @@ const carousel = new bootstrap.Carousel(myCarouselElement, {
 
             document.querySelector('.middleList').innerHTML = originalMiddleListContent;
             middleSticker.innerHTML = '';
+            middleSticker1.innerHTML = '';
             middleSticker2.innerHTML = '';
 
             const resetDraggableMidElements = document.querySelectorAll('.draggableMid');
@@ -297,6 +344,13 @@ const carousel = new bootstrap.Carousel(myCarouselElement, {
                 element.addEventListener('dragstart', (e) => {
                     e.dataTransfer.setData('text/plain', e.target.id);
                     middleSticker.style.display = 'flex';
+                });
+            });
+            const resetDraggableTopStickerElements2 = document.querySelectorAll('.draggableTop');
+            resetDraggableTopStickerElements2.forEach(element => {
+                element.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('text/plain', e.target.id);
+                    middleSticker1.style.display = 'flex';
                 });
             });
             const resetDraggableMidElements2 = document.querySelectorAll('.draggableMid');
@@ -316,6 +370,7 @@ const carousel = new bootstrap.Carousel(myCarouselElement, {
         
             const topSticker = document.querySelector('.top-sticker');
             const middleSticker = document.querySelector('.middleSticker');
+            const middleSticker1 = document.querySelector('.middleSticker1');
             const topSticker2 = document.querySelector('.topSticker2');
             const middleSticker2 = document.querySelector('.middleSticker2');
         
@@ -330,6 +385,7 @@ const carousel = new bootstrap.Carousel(myCarouselElement, {
                 }else{
                     topSticker2.style.display = 'flex';
                     middleSticker2.style.display = 'flex';
+                    middleSticker1.style.display = 'flex';
                 }
             });
         

@@ -265,8 +265,6 @@ footer button:hover {
 
     function updateInputValue(count) {
         const inputValue = document.getElementById('inputValue');
-
-        // Ensure the count is within your desired range, for example, a minimum value of 1
         if (count < 1) {
             count = 1;
         }
@@ -274,30 +272,4 @@ footer button:hover {
         // Update the input value
         inputValue.value = count;
     }
-
-    $(".cartBtn").click(function (e) {
-    e.preventDefault();
-    var $form = $(this).closest(".cartformsubmit");
-    var pid = $form.find(".newId").val();
-    var pname = $form.find(".newName").val();
-    var pimage = $form.find(".newImage").val();
-    var pqty = $form.find(".quanty").val(); // Corrected to get the quantity
-    var priceSpan = $form.find('.newPrice').val(); // Corrected to get the updated price
-
-    $.ajax({
-        url: 'assets/action.php',
-        method: 'post',
-        data: {
-            newId: pid,
-            pname: pname,
-            pprice: priceSpan, // Use the updated price
-            pqty: pqty, // Use the corrected quantity
-            pimage: pimage,
-        },
-        success: function (response) {
-            $("#message").html(response);
-            
-        }
-    });
-});
 </script>

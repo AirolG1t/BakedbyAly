@@ -223,55 +223,6 @@
     </div>
 </section>
 
-
-<div class="heading">
-    <h1>Contact us</h1>
-</div>
-
-<section class="contact">
-    <div class="icons-container">
-
-        <div class="icons">
-            <i class="fas fa-phone"></i>
-            <h3>our number</h3>
-            <p>+111-222-3333</p>
-            <p>+456-786-7890</p>
-        </div>
-
-        <div class="icons">
-            <i class="fas fa-envelope"></i>
-            <h3>our email</h3>
-            <p>shaikhfarhan@gmail.com</p>
-            <p>xyzemail@gmail.com</p>
-        </div>
-
-        <div class="icons">
-            <i class="fas fa-map-marker-alt"></i>
-            <h3>our address</h3>
-            <p>bulakan,Philippines - 401203</p>
-        </div>
-
-    </div>
-
-     <div class="row">
-         <form action="">
-             <h3>get in touch</h3>
-             <div class="inputBox">
-             <input type="text" placeholder="enter your name" class="box">
-             <input type="text" placeholder="enter your email" class="box">
-            </div>
-            <div class="inputBox">
-                <input type="number" placeholder="enter your number" class="box">
-                <input type="text" placeholder="enter your subject" class="box">
-               </div>
-               <textarea placeholder=" your message" cols="30" rows="10"></textarea>
-               <input type="submit" value="send message" class="btn">
-         </form>
-         <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462560.3011806427!2d54.947543798608436!3d25.076381472700536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1642496355732!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-     </div>
-
-</section>
-
 <div class="space"></div>
 
 

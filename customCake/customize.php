@@ -41,9 +41,12 @@
                 <div class="top">
                     <div class="sticker">
                         <ul class="topList">
-                            <li class="top2"><img src="Removal-94.png" class="draggableTop" id="top1" draggable="true" alt=""></li>
-                            <li class="top2"><img src="donut1.jpg" class="draggableTop" id="top2" draggable="true" alt=""></li>
-                            <li class="top2"><img src="Removal-311.png" class="draggableTop" id="top3" draggable="true" alt=""></li>
+                            <li class="top2"><img src="[removal.ai]_1.png" class="draggableTop" id="top1" draggable="true" alt=""></li>
+                            <li class="top2"><img src="Removal-311.png" class="draggableTop" id="top2" draggable="true" alt=""></li>
+                            <li class="top2"><img src="[removal.ai]_3.png" class="draggableTop" id="top3" draggable="true" alt=""></li>
+                            <li class="top2"><img src="[removal.ai]_4.png" class="draggableTop" id="top5" draggable="true" alt=""></li>
+                            <li class="top2"><img src="[removal.ai]_5.png" class="draggableTop" id="top6" draggable="true" alt=""></li>
+                            <li class="top2"><img src="[removal.ai]_6.png" class="draggableTop" id="top7" draggable="true" alt=""></li>
                         </ul>
                     </div>
                 </div>
@@ -98,13 +101,14 @@
                 <div class="cakeColor">
                     <span>Colors:       <i class='bx bx-question-mark centered-icon' data-bs-toggle="popover" data-bs-title="Instruction" data-bs-content="Drag and Drop the color you want in the cake"></i></span>
                     <ul class="colorList">
-                        <li class="draggable-list" draggable="true" style="background-color: #fce537" id="color1" ></li>
-                        <li class="draggable-list" draggable="true" style="background-color: #19f53a" id="color2"></li>
+                        <li class="draggable-list" draggable="true" style="background-color: #414042" id="color1" ></li>
+                        <li class="draggable-list" draggable="true" style="background-color: #FCBAB1" id="color2"></li>
                         <li class="draggable-list" draggable="true" style="background-color: #af52a7" id="color3"></li>
                         <li class="draggable-list" draggable="true" style="background-color: #fc6bbb" id="color4"></li>
-                        <li class="draggable-list" draggable="true" style="background-color: #fdba4d" id="color5"></li>
+                        <li class="draggable-list" draggable="true" style="background-color: #77644b" id="color5"></li>
                         <li class="draggable-list" draggable="true" style="background-color: #76aaff" id="color6"></li>
                         <li class="draggable-list" draggable="true" style="background-color: #eeeeee" id="color7"></li>
+                        <li class="draggable-list" draggable="true" style="background-color: #EBCFC4" id="color8"></li>
                     </ul>
                 </div>
             </div>
@@ -130,6 +134,9 @@
                         <img src="newSize.svg" class="d-flex w-60" id="redImage" alt="Droppable Image" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)">
                     </div>
                     <div class="carousel-item">
+                        <div class="middleSticker1">
+                            
+                        </div>
                         <div class="topSticker2">
 
                         </div>

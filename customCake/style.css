@@ -185,15 +185,16 @@ input[type="radio"]{
 }
 .cakeColor {
   width: 100%;
-  overflow-x: auto;
+  overflow-x: scroll;
 }
 .colorList, .topList, .middleList {
   list-style: none;
-  width: 600px;
+  width: 100%;
   height: 100px;
   display: flex;
   color: #fff;
   text-align: center;
+  overflow-x: hidden;
 }
 .sticker .middleList, .sticker .topList {
   list-style: none; /* Remove default list bullets */
@@ -286,19 +287,19 @@ input[type="radio"]{
   z-index: 1; 
   display: none;     
   width: 280px;
-  height: 100px;
+  height: 120px;
   position: absolute;
 }
 .top-sticker:hover {
     background-color: transparent;
     cursor: pointer;
 }
-.carousel-item.active .top-sticker {
+.active .top-sticker {
   z-index: 1; 
   position: absolute;
-  top: 0;
   left: 185px;
   border: 2px dashed #ff0000;
+  object-fit: cover;
 }
 .carousel-item.active .top-sticker:hover{
   border: 2px dashed #ff0000;
@@ -309,6 +310,7 @@ input[type="radio"]{
   width: 190px;
   height: 160px;
   position: absolute;
+  border: 2px dashed #ff0000;
 }
 .topSticker2:hover {
   background-color: transparent;
@@ -321,7 +323,25 @@ input[type="radio"]{
   left: 220px;
   border: 2px dashed #3700ff;
 }
-.carousel-item.active .top-sticker2:hover{
+.carousel-item.active .topSticker2:hover{
+  border: 2px dashed #3700ff;
+}
+.middleSticker1{
+  z-index: 2; 
+  display: none;     
+  width: 120px;
+  height: 100px;
+  position: absolute;
+  border: 2px dashed #ff0000;
+}
+.carousel-item.active .middleSticker1 {
+  z-index: 2; 
+  position: absolute;
+  top: 130px;
+  left: 155px;
+  border: 2px dashed #3700ff;
+}
+.carousel-item.active .middleSticker1:hover{
   border: 2px dashed #3700ff;
 }
 .middleSticker{
@@ -341,6 +361,7 @@ input[type="radio"]{
   position: absolute;
   left: 185px;
   top: 90px;
+  border: 1px dashed #25ee0f;
 }
 .carousel-item.active  .middleSticker:hover{
   border: 1px dashed #25ee0f;
@@ -352,6 +373,7 @@ input[type="radio"]{
   height: 230px;
   left: 70px;
   top: 155px;
+  border: 2px dashed #ff0000;
 }
 .middleSticker2:hover {
     background-color: transparent;

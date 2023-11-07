@@ -18,14 +18,7 @@
                     </tr>
                 </thead>
                 <tbody id="showData">
-                    <?php 
-                    $select = mysqli_query($conn,"SELECT * From order_db");
-                    $number = 1;
-                    while ($row = mysqli_fetch_assoc($select))
-                    {
-                        
-                    }
-                    ?>
+                    
                 </tbody>
             </table>
         </div>

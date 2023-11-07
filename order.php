@@ -30,6 +30,7 @@ include_once 'assets/dbcon.php';?>
             <th scope="col">date <button class="filter"><i class="fa fa-filter"></i></button></th>
             <th scope="col">size</th>
             <th scope="col">category</th>
+            <th>quantity</th>
             <th scope="col">status</th>
             <th scope="col">Action</th>
             </tr>
@@ -46,6 +47,7 @@ include_once 'assets/dbcon.php';?>
                 echo "    <td>".$row['Oname']."</td>";
                 echo "    <td>".$row['Odate']."</td>";
                 echo "    <td>".$row['Osize']."</td>";
+                echo "    <td>".$row['Oqty']."</td>";
                 echo "    <td>".$row['Ocategory']."</td>";
                 echo "    <td>".$row['Ostatus']."</td>";
                 echo "    <td>

@@ -165,12 +165,13 @@ footer button:hover {
                             <form action="" class="cartformsubmit">
                                 <div class="input-box">
                                 <header class="pModal-header">
-                                    <span><?php echo $pname?></span>
+                                    <span><?php echo $pname?> </span>
+                                    <br>
+                                    <input type="text" class="newPrice" style="font-size: 18px;" value="₱<?php echo $pprice?>" disabled>
                                 </header>
                                 <hr>
                                 <input type="hidden" class="newId" value="<?php echo $pid?>">
                                 <input type="hidden" class="newName" value="<?php echo $pname?>">
-                                <input type="hidden" class="newPrice" value="<?php echo $pprice?>">
                                 <input type="hidden" class="newImage" value="<?php echo $pimage?>">
                                 <main class="pMain">
                                     <p><?php echo $description?></p>
@@ -231,7 +232,7 @@ footer button:hover {
                                 <hr>
                                 <footer>
                                     <button type="submit" class="fas fa-shopping-cart cartBtn">Add Cart</button>
-                                    <button class="fas fa-heart">Favorite</button>
+                                    <button class="bx bx-cart-add">Buy now</button>
                                 </footer>
                                 </div>
                             </form>

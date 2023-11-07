@@ -19,9 +19,7 @@
     </div>
     <div class="icons">
         <div class="dropdown">
-        <i id="menu-btn" class="fas fa-bars"></i>
-        <i id="search-btn" class="fas fa-search"></i>
-        <a href="assets/cart.php" class="shopping"><i id="cart-btn" class="fas fa-shopping-cart" style="color: #fff;"></i></a>
+        <a href="cart.php" class="shopping"><i id="cart-btn" class="fas fa-shopping-cart" style="color: #fff;"></i></a>
         </i>
         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" style="margin-left: 35px;" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo $row1['fname']; echo $row1['lname'] ?>
@@ -39,44 +37,17 @@
 
 <section class="home" id="home">
     <div class="slides-container">
-
         <div class="slide active">
             <div class="content">
-                <span>Have a Cake-A-Licious</span>
-                <h3>upto 50% off</h3>
-                <a href="#" class="btn">Shop Now</a>
+                <span>Let us be part of your Happiness</span>
+                <h3>Baked by Aly</h3>
             </div>
             <div class="img">
-                <img decoding="async" src="img/home-img-1.png" alt="">
-            </div>
-        </div>
-
-        <div class="slide">
-            <div class="content">
-                <span>Have a Cake-A-Licious</span>
-                <h3>upto 50% off</h3>
-                <a href="#" class="btn">Shop Now</a>
-            </div>
-            <div class="img">
-                <img decoding="async" src="img/home-img-2.png" alt="">
-            </div>
-        </div>
-
-        <div class="slide">
-            <div class="content">
-                <span>Have a Cake-A-Licious</span>
-                <h3>upto 50% off</h3>
-                <a href="#" class="btn">Shop Now</a>
-            </div>
-            <div class="img">
-                <img decoding="async" src="img/home-img-3.png" alt="">
+                <img src="img/banne3.jpg" alt="">
             </div>
         </div>
 
     </div>
-    <div id="next-slide" class="fas fa-angle-right" onclick="next()"></div>
-    <div id="prev-slide" class="fas fa-angle-left" onclick="prev()"></div>
-
 </section>
 <section class="banner-container">
 
@@ -127,11 +98,6 @@
         <h3>Cupcakes</h3>
     </a>
 
-    <a href="#" class="box">
-        <img decoding="async" src="img/cat-8.jpg" alt="">
-        <h3>Crinkles</h3>
-    </a>
-
     <a href="#cakes" class="box">
         <img decoding="async" src="img/cat-4.jpg" alt="">
         <h3>Cakes</h3>
@@ -152,7 +118,7 @@
 
 <section class="products" id="cakes">
     <div id="message"></div>
-    <h1 class="title"> <span>Cakes</span> <a href="#">view all >></a> </h1>
+    <h1 class="title"> <span>Cakes</span></h1>
 
     <form class="form-submit">
     <div class="box-container productCon">
@@ -189,7 +155,7 @@
 </section>
 
 <section class="products" id="muffin">
-    <h1 class="title"> <span>Cupcakes</span> <a href="#">view all >></a> </h1>
+    <h1 class="title"> <span>Cupcakes</span> </h1>
     <div id="message"></div>
     <div class="box-container cupCakeCon">
         <?php 
@@ -237,7 +203,7 @@
 
         <div class="box">
             <h3>follow us</h3>
-            <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+            <a href="https://www.facebook.com/profile.php?id=100064089965130"> <i class="fab fa-facebook-f"></i> facebook </a>
             <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
         </div>
 

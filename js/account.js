@@ -6,96 +6,108 @@ document.addEventListener("DOMContentLoaded", function () {
     let errorTxt = document.querySelector(".error-text");
 
     // Sign Up Button
-    loginBTN.addEventListener('click', () => {
-        document.getElementById("loginForm").reset();
-        $('#wrapper-modals').modal('show');
-        $('#wrapper-modal').modal('hide');
-    });
+    try {
+        loginBTN.addEventListener('click', () => {
+            document.getElementById("loginForm").reset();
+            $('#wrapper-modals').modal('show');
+            $('#wrapper-modal').modal('hide');
+        });
+    }catch(err){}
 
     // Login Button
-    enterLogin.addEventListener('click', () => {
-        document.getElementById("loginForm").reset();
-        $('#wrapper-modal').modal('hide'); // Hide the signup modal
-        $('#wrapper-modals').modal('show');
-        errorTxt.style.display = "none"; // Show the login modal
-    });
+    try {
+        enterLogin.addEventListener('click', () => {
+            document.getElementById("loginForm").reset();
+            $('#wrapper-modal').modal('hide'); // Hide the signup modal
+            $('#wrapper-modals').modal('show');
+            errorTxt.style.display = "none"; // Show the login modal
+        });
+    }catch(err){}
 
     // Signup Button
-    enterSignup.addEventListener('click', () => {
-        document.getElementById("regForm").reset();
-        const previewImage = document.getElementById('preview');
-        previewImage.src = 'assets/images/user3.png';
-        $('#wrapper-modals').modal('hide'); // Hide the login modal
-        $('#wrapper-modal').modal('show'); // Show the signup modal
-    });
+    try {
+        enterSignup.addEventListener('click', () => {
+            document.getElementById("regForm").reset();
+            const previewImage = document.getElementById('preview');
+            previewImage.src = 'assets/images/user3.png';
+            $('#wrapper-modals').modal('hide'); // Hide the login modal
+            $('#wrapper-modal').modal('show'); // Show the signup modal
+        });
+    }catch(err){}
 
     // Forgot Password Button
-    forgotAccBTn.addEventListener('click', () => {
-        document.getElementById("loginForm").reset();
-        $('#wrapper-modals').modal('hide');
-        $('#forgotPass-modal').modal('show');
-    });
+    try {
+        forgotAccBTn.addEventListener('click', () => {
+            document.getElementById("loginForm").reset();
+            $('#wrapper-modals').modal('hide');
+            $('#forgotPass-modal').modal('show');
+        });
+    }catch(err){}
 
     // Sign Up Form Submission
-    let form1 = document.getElementById("regForm");
-    let errTXT = document.querySelector(".error-texts");
-    form1.addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent the default form submission
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "assets/signup.php", true);
+    try {
+        let form1 = document.getElementById("regForm");
+        let errTXT = document.querySelector(".error-texts");
+        form1.addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent the default form submission
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "assets/signup.php", true);
 
-        xhr.onload = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    let data = xhr.responseText;
-                    if (data === "success") {
-                        console.log(data);
-                        $('#regForm')[0].reset();
-                        $('#wrapper-modals').modal('show');
-                        $('#wrapper-modal').modal('hide');
-                    } else {
-                        console.log(data);
-                        errTXT.textContent = data;
-                        errTXT.style.display = "block"; // Display the error message
+            xhr.onload = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        let data = xhr.responseText;
+                        if (data === "success") {
+                            console.log(data);
+                            $('#regForm')[0].reset();
+                            $('#wrapper-modals').modal('show');
+                            $('#wrapper-modal').modal('hide');
+                        } else {
+                            console.log(data);
+                            errTXT.textContent = data;
+                            errTXT.style.display = "block"; // Display the error message
+                        }
                     }
                 }
-            }
-        };
+            };
 
-        let formData1 = new FormData(form1);
-        xhr.send(formData1);
-    });
+            let formData1 = new FormData(form1);
+            xhr.send(formData1);
+        });
+    }catch(err){}
 
     // Login Form Submission
-    let form2 = document.getElementById("loginForm");
+    try {
+        let form2 = document.getElementById("loginForm");
 
-    form2.addEventListener("submit", function (e) {
-        e.preventDefault();
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "assets/login.php", true);
+        form2.addEventListener("submit", function (e) {
+            e.preventDefault();
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "assets/login.php", true);
 
-        xhr.onload = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    let data = xhr.responseText;
-                    if (data === "success") {
-                        console.log(data);
-                        window.location.href = "Customer.php";
-                        $('#wrapper-modals').modal('hide');
-                    } else if (data === "admin") {
-                        console.log(data);
-                        window.location.href = "index.php";
-                    } else {
-                        errorTxt.textContent = data;
-                        errorTxt.style.display = "flex";
+            xhr.onload = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        let data = xhr.responseText;
+                        if (data === "success") {
+                            console.log(data);
+                            window.location.href = "Customer.php";
+                            $('#wrapper-modals').modal('hide');
+                        } else if (data === "admin") {
+                            console.log(data);
+                            window.location.href = "index.php";
+                        } else {
+                            errorTxt.textContent = data;
+                            errorTxt.style.display = "flex";
+                        }
                     }
                 }
-            }
-        };
+            };
 
-        let formData = new FormData(form2);
-        xhr.send(formData);
-    });
+            let formData = new FormData(form2);
+            xhr.send(formData);
+        });
+    }catch(err){}
 });
 
 

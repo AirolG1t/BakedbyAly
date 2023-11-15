@@ -2,6 +2,14 @@
 include_once 'header.php';
 include './sidebar.php';
 include_once 'assets/dbcon.php';?>
+<?php
+    if ($_SESSION['user_type'] == "customer") {
+        header("location: Customer.php");
+    }
+    else if  ($_SESSION['user_type'] != "admin") {
+        header("location: main.php");
+    }
+?>
     <div class="content1">
             <div class="product-container">
                 <h1>Dashboard</h1>

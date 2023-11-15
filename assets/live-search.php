@@ -12,7 +12,7 @@ include_once("dbcon.php");
             {
                 $data .= "<tr><td>".$number."</td><td>".$row['Oname']."</td><td>".$row['Odate']."</td><td>".$row['Osize']."</td><td>".$row['Ocategory']."</td><td>".$row['Ostatus']."</td>
                 <td>
-                    <button id='orderButton' data-hiddenid=".$row['randOid'].">>See all <span class='bx bx-chevron-right'></span></button>
+                    <button id='orderButton' data-hiddenid=".$row['id'].">>See all <span class='bx bx-chevron-right'></span></button>
                 </td></tr>";
             }
             $number++;
@@ -54,11 +54,30 @@ include_once("dbcon.php");
     if(isset($_GET['hiddenid'])){
         $orderid = $_GET['hiddenid'];
         
-        $query = "SELECT * FROM `order_db` WHERE randOid = '{$orderid}'";
+        $query = "SELECT * FROM `order_db` WHERE id = '{$orderid}'";
         $result = mysqli_query($conn, $query);
         $output = '';
 
         while($row = mysqli_fetch_assoc($result)){
+            $status2 = "";
+            $status3 = "";
+            if ($row['Ostatus'] == "Pending") {
+                $status2 = "Ongoing";
+                $status3 = "Complete";
+            }
+            else if ($row['Ostatus'] == "Ongoing") {
+                $status2 = "Pending";
+                $status3 = "Complete";
+            }
+            else if ($row['Ostatus'] == "Complete") {
+                $status2 = "Pending";
+                $status3 = "Ongoing";
+            }
+            else {
+                $row['Ostatus'] = "Pending";
+                $status2 = "Ongoing";
+                $status3 = "Complete";
+            }
             $output .= '
             <form method="POST" action="assets/filter.php?orderId='.$row['randOid'].'">
             <div class="modal-header">
@@ -77,8 +96,12 @@ include_once("dbcon.php");
                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="'.$row['Osize'].'" disabled>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Date:</label>
-                    <input type="date" class="form-control" id="exampleInputPassword1" name="order_date" value ="'.$row['Odate'].'">
+                    <label for="exampleInputPassword1" class="form-label">Date Ordered:</label>
+                    <input type="date" class="form-control" id="exampleInputPassword1" name="order_date" value ="'.$row['Odate'].'" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Date Pickup:</label>
+                    <input type="date" class="form-control" id="exampleInputPassword1" name="order_date_pickup" value ="'.$row['Odatepickup'].'">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Category:</label>
@@ -88,8 +111,8 @@ include_once("dbcon.php");
                     <label for="exampleInputPassword1" class="form-label">Status:</label>
                     <select class="form-control" name="order_status" id="exampleInputPassword1">
                         <option selected>'.$row['Ostatus'].'</option>
-                        <option value="Ongoing">Ongoing</option>
-                        <option value="Complete">Complete</option>
+                        <option value="'.$status2.'">'.$status2.'</option>
+                        <option value="'.$status3.'">'.$status3.'</option>
                     </select>
                 </div>
             </div>

@@ -28,10 +28,11 @@ include_once("dbcon.php");
         }
         if (isset($_GET['orderId'])) {
             $id = $_GET['orderId'];
-            $date = $_POST['order_date'];
+            $user_id = $_GET['uid'];
+            $date = $_POST['order_date_pickup'];
             $status = $_POST['order_status'];
         
-            $query2 = "UPDATE order_db SET Odate = ?, Ostatus = ? WHERE randOid = ?";
+            $query2 = "UPDATE order_db SET Odatepickup = ?, Ostatus = ? WHERE randOid = ?";
             
             // Prepare the statement
             $stmt = mysqli_prepare($conn, $query2);
@@ -40,8 +41,62 @@ include_once("dbcon.php");
                 // Bind parameters and execute the query
                 mysqli_stmt_bind_param($stmt, "ssi", $date, $status, $id);
                 if (mysqli_stmt_execute($stmt)) {
-                    header("location: ../order.php");
-                    echo "success";
+                    
+                    // start of sending email setup
+                    $stmt_user_details = $conn->prepare('SELECT * FROM users WHERE user_id = ?');
+                    $stmt_user_details->bind_param('s', $user_id);
+                    $stmt_user_details->execute();
+                    $result_user_details = $stmt_user_details->get_result();
+                    
+                    $email = "";
+                    if ($result_user_details->num_rows > 0) {
+                        $user_details = $result_user_details->fetch_assoc();
+                        $email = $user_details['email'];
+                        $name = $user_details['fname'] . " " . $user_details['lname'];
+                    }
+
+                    $message = "Thank you for ordering at <b><i><a href='https://bakedbyally.com/'>bakedbyally.com</a></i></b>! Below is the status of your order:";
+                    
+                    // set email to user
+                    ini_set( 'display_errors', 1 );
+                    error_reporting( E_ALL );
+
+                    // user email
+                    $to = $email;
+
+                    // email subject/title
+                    $subject = 'BakedByAlly Order Status';    
+
+                    $order_no = $id;
+
+                    // additional message
+                    $message .= "<br>____________________________________";
+                    $message .= "<br><b>ORDER NO:</b> ".$order_no;
+                    $message .= "<br><b>STATUS:</b> ".$status;
+
+                    if ($status == "Complete") {
+                        $message .= "<br><b>DATE OF PICKUP:</b> ".date_format(date_create($date),"M d, Y");;
+                    }
+
+                    $message .= "<br><br>Track your order status here at <a href='https://bakedbyally.com/assets/orders.php'>Click here.</a>";
+                    $message .= "<br><br><br>Sincerely, <br> Baked by Ally Team";
+
+                    // email headers
+                    $headers  = "From: no-reply@bakedbyally.com \r\n";
+                    $headers .= "MIME-Version: 1.0\r\n";
+                    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+                    // check if email is sent or not in console
+                    if(mail($to,$subject,$message, $headers)) {
+                        echo "<script>console.log('Email Checkout: The email message was sent.')</script>";
+                    } else {
+                        echo "<script>console.log('Email Checkout: The email message was not sent.')</script>";
+                    }
+
+                    // end of sending email setup
+                    
+                    // header("location: ../order.php");
+                    echo "<script>window.location.href = '../order.php'</script>";
                 } else {
                     echo "error update order details: " . mysqli_error($conn);
                 }

@@ -19,7 +19,9 @@ if (isset($_POST['pid'])) {
         $pFlavor = $product['flavor'];
         $pSize = $product['size'];
         $description = $product['description'];
+        $category = $product['category'];
         $image_path = 'assets/images/' . $pimage;
+        $stock = $product['stock'];
     }
 }
 ?>
@@ -46,9 +48,11 @@ if (isset($_POST['pid'])) {
     margin: 20px;
     width: 100%;
 }
-span {
-    font-size: 17px;
-    font-weight: 500;
+#modal-content {
+    span {
+        font-size: 17px;
+        font-weight: 500;
+    }
 }
 .pMain {
     display: flex;
@@ -161,78 +165,96 @@ footer button:hover {
                         <div class="col-md-6 left2">
                             
                         </div>
-                        <div class="col-md-6 righ2">
+                        <div class="col-md-6 righ2" style="background: #ffffff; border-bottom-right-radius: 10px; border-top-right-radius: 10px;">
                             <form action="" class="cartformsubmit">
                                 <div class="input-box">
                                 <header class="pModal-header">
-                                    <span><?php echo $pname?> </span>
-                                    <br>
-                                    <input type="text" class="newPrice" style="font-size: 18px;" value="₱<?php echo $pprice?>" disabled>
+                                    <span><?php echo $pname?></span>
+                                    <h2 style="color: #777777;">₱ <span id="item-price"><?php echo $pprice?></span></h2>
+                                    <span id="item-base-price" style="display: none;"><?php echo $pprice?></span>
                                 </header>
                                 <hr>
-                                <input type="hidden" class="newId" value="<?php echo $pid?>">
-                                <input type="hidden" class="newName" value="<?php echo $pname?>">
-                                <input type="hidden" class="newImage" value="<?php echo $pimage?>">
-                                <main class="pMain">
+                                <input type="hidden" class="newId" value="<?php echo $pid;?>">
+                                <input type="hidden" class="newName" value="<?php echo $pname;?>">
+                                <input type="hidden" class="newPrice" value="<?php echo $pprice;?>">
+                                <input type="hidden" class="newImage" value="<?php echo $pimage;?>">
+                                <input type="hidden" class="newStock" value="<?php echo $stock;?>">
+                                <input type="hidden" class="newCategory" id="newCategoryValue" value="<?php echo $category;?>">
+                                <main class="pMain" style="overflow-y: scroll;">
                                     <p><?php echo $description?></p>
                                     <hr>
+                                    <!-- flavors section -->
                                     <div class="Flavor">
-                                    <span>Flavor: </span>
-                                    <?php
-                                    if (!empty($pFlavor)) {
-                                        // Split the $pFlavor variable into an array based on some delimiter (e.g., comma)
-                                        $flavors = explode(',', $pFlavor);
-                                        // Iterate through the flavors and create checkboxes
-                                        foreach ($flavors as $flavor) {
-                                            $flavor = trim($flavor); // Remove leading/trailing spaces
-                                            echo '
-                                            <div class="option">
-                                                <input type="radio" class="flavor" id="flavor_' . $flavor . '" name="flavor[]" value="' . $flavor . '">
-                                                <label for="flavor_' . $flavor . '">' . $flavor . '</label>
-                                            </div>
-                                            ';
+                                        <span id="add-flavor-error" style="display: none;"><small style="color: #ff0000; font-size: 13px;">Please select your preferred flavor.</small></span>
+                                        <span>Flavor: </span>
+                                        <?php
+                                        if (!empty($pFlavor)) {
+                                            // Split the $pFlavor variable into an array based on some delimiter (e.g., comma)
+                                            $flavors = explode(',', $pFlavor);
+                                            // Iterate through the flavors and create checkboxes
+                                            foreach ($flavors as $flavor) {
+                                                $flavor = trim($flavor); // Remove leading/trailing spaces
+                                                echo '
+                                                <div class="option">
+                                                    <input type="radio" onclick="clearFlavorError(this)" class="flavor" id="flavor_' . $flavor . '" name="flavor[]" value="'.$flavor.'">
+                                                    <label for="flavor_' . $flavor . '">' . $flavor . '</label>
+                                                </div>
+                                                ';
+                                            }
                                         }
-                                    }
-                                    ?>
-                                    <br>
-                                    <span>Size: </span>
-                                    <?php
-                                    if(!empty($pSize)){
-                                        $size = explode(',', $pSize);
-                                        foreach($size as $size){
-                                            echo '
-                                            <div class="option2">
-                                                <input type="radio" class="size" id="size_'.$size.'" name="size[]" value='.$size.'>
-                                                <label for="size_'.$size.'">'.$size.'</label>
-                                            </div>
-                                            ';
-                                        }
-                                    }
-                                    ?>
-                                    <br>
-                                    <span>Qty: </span>
-                                    <div class="qty">
-                                        <span class="decrement" onclick="decrementCount()"><i class='bx bx-minus'></i></span>
-                                        <div class="count">1</div>
-                                        <span class="increment" onclick="incrementCount()"><i class='bx bx-plus' ></i></span>
-                                        <input type="number" id="inputValue" class="quanty" name="qty" hidden>
+                                        ?>
                                     </div>
-                                </div>
+                                    <!-- sizes section -->
+                                    <div class="Sizes">
+                                        <span id="add-size-error" style="display: none;"><small style="color: #ff0000; font-size: 13px;">Please select your preferred size.</small></span>
+                                        <span>Size: </span>
+                                        <?php
+                                        if(!empty($pSize)){
+                                            $size = explode(',', $pSize);
+                                            foreach($size as $size){
+                                                echo '
+                                                <div class="option2">
+                                                    <input type="radio" onclick="clearSizeError(`'.$size.'`)" class="size" id="size_'.$size.'" name="size[]" value = "'.$size.'">
+                                                    <label for="size_'.$size.'">'.$size.'</label>
+                                                </div>
+                                                ';
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                    <!-- quantity section -->
+                                    <div class="Quantity">
+                                        <span id="add-quantity-error" style="display: none;"><small style="color: #ff0000; font-size: 11px;">Quantity can't be greater than remaining stock.</small></span>
+                                        <span>Qty: </span>
+                                        <div class="qty">
+                                            <span class="decrement" onclick="decrementCount()"><i class='bx bx-minus'></i></span>
+                                            <div class="count" style="color: #000000;">1</div>
+                                            <span class="increment" onclick="incrementCount()"><i class='bx bx-plus' ></i></span>
+                                            <input type="number" id="inputValue" class="quanty" name="qty" value="<?php echo $stock > 0 ? 1 : 0; ?>" hidden>
+                                        </div>
+                                    </div>
+                                    <!-- stock section -->
+                                    <div class="Quantity">
+                                        <span>Stock: </span>
+                                        <div class="qty">
+                                            <div id="div-stock"><?php echo $stock; ?></div>
+                                        </div>
+                                    </div>
+                                    <!-- review section -->
                                     <div class="review">
-                                        <span>Review</span>
-                                        <hr>
-                                        <div class="feedback-container">
+                                        <span>Review:</span>
+                                        <div  style="border: 1px #777777 solid; padding: 5px; height: 200px; overflow-y: scroll;">
                                             <div class="user-message">
                                                 <h4>myName</h4><h6>chcoo: vanilla</h6>
-                                                <p>ihfaeihfae</p>
+                                                <p>ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae ihfaeihfae </p>
                                             </div>
                                         </div>                                   
                                     </div>
                                 </main>
                                 <hr>
                                 <footer>
-                                    <button type="submit" class="fas fa-shopping-cart cartBtn">Add Cart</button>
-                                    <button class="bx bx-cart-add">Buy now</button>
+                                    <button type="button" name="add-to-cart" id="btn-add-to-cart" onclick="addToCart()" value="<?php echo $pid?>" class="fas fa-shopping-cart cartBtn">Add Cart</button>
+                                    <button type="button" name="buy-now" id="btn-buy-now" onclick="buyNow()" value="<?php echo $pid?>" class="fas fa-cart-arrow-down cartBtn">Buy Now</button>
                                 </footer>
                                 </div>
                             </form>
@@ -243,8 +265,8 @@ footer button:hover {
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js" ></script>
 <script>
-    let priceIncrement = 0;
 
     function decrementCount() {
         const countElement = document.querySelector(".count");
@@ -254,14 +276,28 @@ footer button:hover {
             countElement.innerText = currentCount;
             updateInputValue(currentCount);
         }
+        if (currentCount > parseFloat(document.getElementById('div-stock').textContent)) {
+            document.getElementById('add-quantity-error').style.display = "block"
+        }
+        else {
+            document.getElementById('add-quantity-error').style.display = "none"
+            countElement.innerText = currentCount;
+            updateInputValue(currentCount);
+        }
     }
 
     function incrementCount() {
         const countElement = document.querySelector(".count");
         let currentCount = parseInt(countElement.innerText, 10);
         currentCount++;
-        countElement.innerText = currentCount;
-        updateInputValue(currentCount);
+        if (currentCount > parseFloat(document.getElementById('div-stock').textContent)) {
+            document.getElementById('add-quantity-error').style.display = "block"
+        }
+        else {
+            document.getElementById('add-quantity-error').style.display = "none"
+            countElement.innerText = currentCount;
+            updateInputValue(currentCount);
+        }
     }
 
     function updateInputValue(count) {
@@ -272,5 +308,186 @@ footer button:hover {
 
         // Update the input value
         inputValue.value = count;
+    }
+
+    function addToCart() {
+        var flavor = ""
+        var size = ""
+
+        if (parseInt(document.querySelector("#div-stock").textContent) <= 0){
+            Swal.fire({
+                icon: "warning",
+                title: "Out of Stock",
+                text: "Please try again once we have added stock for this item."
+            })
+        }
+        else {
+            document.querySelectorAll(".flavor").forEach(item => {
+                if (item.checked) {
+                    flavor = item.value
+                }
+            })
+            
+            document.querySelectorAll(".size").forEach(item => {
+                if (item.checked) {
+                    size = item.value
+                }
+            })
+
+            if (flavor == ""){
+                document.getElementById('add-flavor-error').style.display = "block"
+            }
+            if (size == ""){
+                document.getElementById('add-size-error').style.display = "block"
+            }
+
+            if (flavor != "" && size != "") {
+                $.ajax({
+                    url: 'assets/insert-cart.php',
+                    method: 'post',
+                    data: {
+                        product_id: "<?php echo $pid; ?>",
+                        size: size,
+                        flavor: flavor,
+                        qty: document.querySelector("#inputValue").value,
+                        price: document.querySelector("#item-price").textContent
+                    },
+                    success: function(response) {
+                        console.log(response)
+                        result = JSON.parse(response)
+                        if (result.success) {
+                            Swal.fire({
+                                title: 'Item Added', 
+                                text: 'You have successfully added this item in your cart', 
+                                icon: 'success'
+                            }).then((result) => {
+                                window.location.href = "Customer.php#categories"
+                            })
+                        }
+                        else {
+                            Swal.fire('Adding Failed', 'Please try adding item in your cart again.', 'error')
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    function buyNow() {
+        var flavor = ""
+        var size = ""
+
+        if (parseInt(document.querySelector("#div-stock").textContent) <= 0){
+            Swal.fire({
+                icon: "warning",
+                title: "Out of Stock",
+                text: "Please try again once we have added stock for this item."
+            })
+        }
+        else {
+
+            document.querySelectorAll(".flavor").forEach(item => {
+                if (item.checked) {
+                    flavor = item.value
+                }
+            })
+            
+            document.querySelectorAll(".size").forEach(item => {
+                if (item.checked) {
+                    size = item.value
+                }
+            })
+
+            if (flavor == ""){
+                document.getElementById('add-flavor-error').style.display = "block"
+            }
+            if (size == ""){
+                document.getElementById('add-size-error').style.display = "block"
+            }
+
+            if (flavor != "" && size != "") {
+                Swal.fire({
+                    title: "Loading Checkout Page",
+                    text: "Please wait while we process your order...",
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                    showCloseButton: false,
+                    showDenyButton: false,
+                })
+                setTimeout(function () {
+                    $.ajax({
+                        url: 'assets/insert-cart.php',
+                        method: 'post',
+                        data: {
+                            product_id: "<?php echo $pid; ?>",
+                            size: size,
+                            flavor: flavor,
+                            qty: document.querySelector("#inputValue").value,
+                            price: document.querySelector("#item-price").textContent
+                        },
+                        success: function(response) {
+                            // console.log(response)
+                            result = JSON.parse(response)
+                            if (result.success) {
+                                window.location.href = "assets/buy-now.php?id="+result.id
+                            }
+                            else {
+                                Swal.fire('Adding Failed', 'Please try adding item in your cart again.', 'error')
+                            }
+                        }
+                    });
+                }, 2000)
+            }
+        }
+    }
+
+    function clearFlavorError(inp){
+        document.getElementById('add-flavor-error').style.display = "none"
+    }
+
+    function clearSizeError(size){
+        document.getElementById('add-size-error').style.display = "none"
+        const sizeChecks = document.querySelectorAll(".size")
+        const itemPrice = document.querySelector("#item-price")
+        const itemBasePrice = document.querySelector("#item-base-price")
+
+        var haveSmall = false
+        var haveMedium = false
+        var haveLarge = false
+
+        sizeChecks.forEach(size => {
+            if (size.value.trim() == "small") {
+                haveSmall = true
+            }
+            if (size.value.trim() == "medium") {
+                haveMedium = true
+            }
+            if (size.value.trim() == "large") {
+                haveLarge = true
+            }
+        })
+
+        if (sizeChecks && sizeChecks.length > 1) {
+            if (size.trim() == "small") {
+                itemPrice.textContent = itemBasePrice.textContent
+            }
+            else if (size.trim() == "medium") {
+                if (haveSmall) {
+                    itemPrice.textContent = parseFloat(itemBasePrice.textContent) + 250
+                }
+                else {
+                    itemPrice.textContent = itemBasePrice.textContent
+                }
+            }
+            else if (size.trim() == "large") {
+                if ((haveSmall && haveMedium) || haveSmall) {
+                    itemPrice.textContent = parseFloat(itemBasePrice.textContent) + 500
+                }
+                else if (haveMedium) {
+                    itemPrice.textContent = parseFloat(itemBasePrice.textContent) + 250
+                }
+            }
+        }
     }
 </script>

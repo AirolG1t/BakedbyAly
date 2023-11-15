@@ -17,16 +17,24 @@
             <span class="logoName">Baked by Ally</span>
         </a>
     </div>
+
+    <nav class="navbar">
+        <a href="#categories">Category</a>
+        <a href="#cakes">Cakes</a>
+        <a href="#cupcakes">Cupcakes</a>
+    </nav>
+
     <div class="icons">
         <div class="dropdown">
-        <a href="cart.php" class="shopping"><i id="cart-btn" class="fas fa-shopping-cart" style="color: #fff;"></i></a>
-        </i>
+        <i id="menu-btn" class="fas fa-bars"></i>
+        <i id="search-btn" class="fas fa-search"></i>
+        <a href="assets/cart.php" class="shopping"><i id="cart-btn" class="fas fa-shopping-cart" style="color: #fff;" style="margin-right: 5px;"></i></a>
         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" style="margin-left: 35px;" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo $row1['fname']; echo $row1['lname'] ?>
         </button>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">View Profile</a></li>
-            <li><a class="dropdown-item" href="#">Orders</a></li>
+            <li><a class="dropdown-item" href="assets/orders.php">Orders</a></li>
             <li><a class="dropdown-item" href="assets/logout.php?logout_id=<?php echo $row1['unique_id'] ?>">Logout</a></li>
         </ul>
         </div>
@@ -37,17 +45,44 @@
 
 <section class="home" id="home">
     <div class="slides-container">
+
         <div class="slide active">
             <div class="content">
-                <span>Let us be part of your Happiness</span>
-                <h3>Baked by Aly</h3>
+                <span>Have a Cake-A-Licious</span>
+                <h3>upto 50% off</h3>
+                <a href="#categories" class="btn">Shop Now</a>
             </div>
             <div class="img">
-                <img src="img/banne3.jpg" alt="">
+                <img decoding="async" src="img/home-img-1.png" alt="">
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content">
+                <span>Have a Cake-A-Licious</span>
+                <h3>upto 50% off</h3>
+                <a href="#categories" class="btn">Shop Now</a>
+            </div>
+            <div class="img">
+                <img decoding="async" src="img/home-img-2.png" alt="">
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content">
+                <span>Have a Cake-A-Licious</span>
+                <h3>upto 50% off</h3>
+                <a href="#categories" class="btn">Shop Now</a>
+            </div>
+            <div class="img">
+                <img decoding="async" src="img/home-img-3.png" alt="">
             </div>
         </div>
 
     </div>
+    <div id="next-slide" class="fas fa-angle-right" onclick="next()"></div>
+    <div id="prev-slide" class="fas fa-angle-left" onclick="prev()"></div>
+
 </section>
 <section class="banner-container">
 
@@ -56,7 +91,7 @@
         <div class="content">
         <span>Best Seller</span>
         <h3>Order Now!</h3>
-        <a href="#" class="btn">shop now</a>
+        <a href="#categories" class="btn">shop now</a>
     </div>
     </div>
 
@@ -65,7 +100,7 @@
         <div class="content">
         <span>Favorites</span>
         <h3>Order Now!</h3>
-        <a href="#" class="btn">shop now</a>
+        <a href="#categories" class="btn">shop now</a>
     </div>
     </div>
 
@@ -74,18 +109,15 @@
         <div class="content">
         <span>Recommended by Customer</span>
         <h3>Order Now!</h3>
-        <a href="#" class="btn">shop now</a>
+        <a href="#categories" class="btn">shop now</a>
     </div>
     </div>
 
 </section>
 
-
-
-
-<div class="heading">
-    <h1>our shop</h1>
-    </div>
+<div class="heading" id="categories">
+    <h1>Baked by Ally</h1>
+</div>
 
 <section class="category">
 
@@ -96,6 +128,11 @@
     <a href="#muffin" class="box">
         <img decoding="async" src="img/cat-1.jpg" alt="">
         <h3>Cupcakes</h3>
+    </a>
+
+    <a href="#" class="box">
+        <img decoding="async" src="img/cat-8.jpg" alt="">
+        <h3>Crinkles</h3>
     </a>
 
     <a href="#cakes" class="box">
@@ -113,12 +150,12 @@
 
 </section>
 
+<div class="space" id="cakes">
+</div>
 
-
-
-<section class="products" id="cakes">
+<section class="products" id="">
     <div id="message"></div>
-    <h1 class="title"> <span>Cakes</span></h1>
+    <h1 class="title"> <span>Cakes</span> <a href="#">view all >></a> </h1>
 
     <form class="form-submit">
     <div class="box-container productCon">
@@ -154,8 +191,11 @@
     </form>
 </section>
 
+<div class="space" id="cupcakes">
+</div>
+
 <section class="products" id="muffin">
-    <h1 class="title"> <span>Cupcakes</span> </h1>
+    <h1 class="title"> <span>Cupcakes</span> <a href="#">view all >></a> </h1>
     <div id="message"></div>
     <div class="box-container cupCakeCon">
         <?php 
@@ -174,6 +214,7 @@
                             <input type="hidden" class="pname" value="'.$row['name'].'">
                             <input type="hidden" class="price" value="'.$row['price'].'">
                             <input type="hidden" class="pimage" value="'.$row['image'].'">
+                            <input type="hidden" class="stock" value="'.$row['stock'].'">
                             <div class="img">
                                 <img src="assets/images/'.$row['image'].'" alt="">
                             </div>
@@ -203,7 +244,7 @@
 
         <div class="box">
             <h3>follow us</h3>
-            <a href="https://www.facebook.com/profile.php?id=100064089965130"> <i class="fab fa-facebook-f"></i> facebook </a>
+            <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
             <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
         </div>
 
@@ -241,3 +282,40 @@
   </script>
 </body>
 </html>
+
+<?php
+    if (isset($_GET['add-to-cart'])) {
+        $product_id = $_GET['add-to-cart'];
+        $quantity = $_GET['qty'];
+
+        $stmt = $conn->prepare('SELECT * FROM products WHERE pid = '.$product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $product = $result->fetch_assoc();
+            $pname = $product['name'];
+            $pprice = $product['price'];
+            $pimage = $product['image'];
+            $pFlavor = $product['flavor'];
+            $pSize = $product['size'];
+            $description = $product['description'];
+            $image_path = 'assets/images/' . $pimage;
+            $stock = $product['stock'];
+        }
+        
+        $total_price = $quantity * $pprice;
+        $user_id = $_SESSION['user_id'];
+
+        $insert_sql = mysqli_query($conn, "INSERT INTO carttable (user_id, cartId, cName, cPrice, cImage, qty, totalPrice) VALUES ('$user_id', '$product_id', '$pname', '$pprice', '$pimage', '$quantity', '$total_price')");
+        
+        if($insert_sql){
+            header(
+                "location: ../Customer.php#categories"
+            );
+        }else {
+            echo '<script>alert("insert error")</script>';
+        }
+
+    }
+?>

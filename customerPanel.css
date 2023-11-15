@@ -370,7 +370,6 @@ a {
 .home .slides-container .slide .img img{
     width: 100%;
     animation: fadeUp .4s linear;
-    border-radius: 30px;
 }
 
 .home #next-slide,
@@ -988,7 +987,7 @@ a {
     width: 100%;
 }
 .modal-body{
-    min-height: 550px;
+    height: 550px;
     padding: 0;
 }
 .main {
@@ -998,19 +997,9 @@ a {
     align-items: center;
     height: 100%;
 }
-.cTable{
-    margin: 1rem auto;
-    width: 85%;
-    overflow-x: hidden;
-    text-align: center;
-    height: 75%;
-    font-size: 18px;
-    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
-    0 32px 64px -48px rgba(0, 0, 0, 0.5);
-}
 .row {
     width: 900px;
-    min-height: 550px;
+    height: 550px;
     border-radius: 10px;
     background: #fff;
     box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.25);
